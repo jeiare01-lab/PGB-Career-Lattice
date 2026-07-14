@@ -1,0 +1,1491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PGB Career Lattice - Professional Development Platform</title>
+  <style>
+    /* ===== MODERN DESIGN SYSTEM ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --navy-dark: #0D1B3D;
+      --navy-light: #1a2f52;
+      --orange-primary: #E65100;
+      --orange-light: #FF6B35;
+      --cream: #FEF9F3;
+      --white: #FFFFFF;
+      --gray-50: #F8FAFC;
+      --gray-100: #F1F5F9;
+      --gray-200: #E2E8F0;
+      --gray-400: #CBD5E1;
+      --gray-600: #475569;
+      --gray-800: #1E293B;
+      --text-primary: #0F172A;
+      --text-secondary: #64748B;
+      --success: #10B981;
+      --warning: #F59E0B;
+      --purple: #8B5CF6;
+      --cyan: #06B6D4;
+      --gradient-1: linear-gradient(135deg, #0D1B3D 0%, #1a2f52 100%);
+      --gradient-2: linear-gradient(135deg, #E65100 0%, #FF6B35 100%);
+      --gradient-3: linear-gradient(135deg, #8B5CF6 0%, #06B6D4 100%);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+      background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0D1B3D 100%);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Animated background effect */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 20% 50%, rgba(230, 81, 0, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+      animation: drift 15s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes drift {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(50px, 50px); }
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      background: var(--gradient-1);
+      color: white;
+      padding: 80px 20px 60px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(255, 107, 53, 0.2) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .header::after {
+      content: '';
+      position: absolute;
+      top: 20%;
+      left: 10%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .header h1 {
+      font-size: 3.5em;
+      font-weight: 800;
+      margin-bottom: 15px;
+      letter-spacing: -2px;
+      position: relative;
+      z-index: 2;
+      background: linear-gradient(135deg, #FFF, #FFD9BF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .header p {
+      font-size: 1.25em;
+      opacity: 0.95;
+      position: relative;
+      z-index: 2;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+    }
+
+    /* ===== CONTAINER ===== */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 50px 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== NAVIGATION TABS ===== */
+    .nav-tabs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 60px;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-tab {
+      padding: 25px;
+      background: white;
+      border: 2px solid transparent;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-tab::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: var(--gradient-2);
+      transition: left 0.3s ease;
+      z-index: -1;
+    }
+
+    .nav-tab:hover {
+      transform: translateY(-8px);
+      border-color: var(--orange-primary);
+      box-shadow: 0 12px 40px rgba(230, 81, 0, 0.2);
+    }
+
+    .nav-tab.active {
+      background: var(--gradient-1);
+      color: white;
+      border-color: var(--navy-dark);
+      box-shadow: 0 12px 50px rgba(13, 27, 61, 0.3);
+    }
+
+    .nav-tab .icon {
+      font-size: 36px;
+      margin-bottom: 12px;
+      display: block;
+      transition: transform 0.3s;
+    }
+
+    .nav-tab:hover .icon {
+      transform: scale(1.2);
+    }
+
+    .nav-tab .step {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--orange-primary);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 8px;
+    }
+
+    .nav-tab.active .step {
+      color: var(--orange-light);
+    }
+
+    .nav-tab .title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .nav-tab.active .title {
+      color: white;
+    }
+
+    /* ===== COMPONENTS ===== */
+    .component {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 50px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      margin-bottom: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      display: none;
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .component.active {
+      display: block;
+    }
+
+    .component h2 {
+      font-size: 2.5em;
+      font-weight: 800;
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+      letter-spacing: -1px;
+    }
+
+    .component-subtitle {
+      font-size: 1.15em;
+      color: var(--text-secondary);
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid var(--gray-100);
+      font-weight: 300;
+    }
+
+    /* ===== SECTION TITLE ===== */
+    .section-title {
+      font-size: 1.4em;
+      font-weight: 700;
+      color: var(--navy-dark);
+      margin: 50px 0 25px 0;
+      padding-bottom: 15px;
+      border-bottom: 3px solid;
+      border-image: var(--gradient-2) 1;
+      display: inline-block;
+      position: relative;
+    }
+
+    /* ===== RATING SCALE ===== */
+    .rating-guide {
+      background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+      border: 2px solid var(--orange-primary);
+      border-radius: 18px;
+      padding: 35px;
+      margin-bottom: 50px;
+      backdrop-filter: blur(10px);
+    }
+
+    .rating-guide h3 {
+      color: var(--orange-primary);
+      font-size: 1.25em;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+    }
+
+    .rating-levels {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+    }
+
+    .rating-level {
+      background: white;
+      padding: 20px;
+      border-radius: 14px;
+      text-align: center;
+      border-left: 5px solid;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .rating-level:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    .rating-level.level-1 { border-left-color: #EF4444; }
+    .rating-level.level-2 { border-left-color: #F97316; }
+    .rating-level.level-3 { border-left-color: #EAB308; }
+    .rating-level.level-4 { border-left-color: #22C55E; }
+    .rating-level.level-5 { border-left-color: var(--navy-dark); }
+
+    .rating-number {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .rating-level.level-1 .rating-number { color: #EF4444; }
+    .rating-level.level-2 .rating-number { color: #F97316; }
+    .rating-level.level-3 .rating-number { color: #EAB308; }
+    .rating-level.level-4 .rating-number { color: #22C55E; }
+    .rating-level.level-5 .rating-number { color: var(--navy-dark); }
+
+    .rating-label {
+      font-weight: 700;
+      font-size: 12px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-primary);
+    }
+
+    .rating-desc {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    /* ===== COMPETENCY CARDS ===== */
+    .competency-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(248, 250, 252, 1) 100%);
+      border: 2px solid var(--gray-200);
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 18px;
+      border-left: 5px solid var(--orange-primary);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(10px);
+    }
+
+    .competency-card:hover {
+      border-left-color: var(--orange-light);
+      box-shadow: 0 8px 30px rgba(230, 81, 0, 0.15);
+      transform: translateX(8px);
+    }
+
+    .competency-name {
+      font-weight: 700;
+      color: var(--navy-dark);
+      margin-bottom: 8px;
+      font-size: 1em;
+    }
+
+    .competency-desc {
+      font-size: 0.9em;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .rating-buttons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .rating-btn {
+      flex: 1;
+      padding: 12px 8px;
+      border: 2px solid var(--gray-200);
+      background: white;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 13px;
+      transition: all 0.2s;
+    }
+
+    .rating-btn:hover {
+      border-color: var(--orange-primary);
+      background: #FFF5E6;
+      transform: scale(1.05);
+    }
+
+    .rating-btn.selected {
+      background: var(--gradient-2);
+      color: white;
+      border-color: var(--orange-primary);
+    }
+
+    /* ===== SELECTION BUTTONS ===== */
+    .selection-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 14px;
+      margin: 20px 0;
+    }
+
+    .selection-btn {
+      padding: 18px;
+      border: 2px solid var(--gray-200);
+      background: white;
+      border-radius: 14px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      text-align: center;
+      font-size: 14px;
+      backdrop-filter: blur(10px);
+    }
+
+    .selection-btn:hover {
+      border-color: var(--orange-primary);
+      background: linear-gradient(135deg, #FFF5E6, #FFEDE6);
+      transform: translateY(-6px);
+      box-shadow: 0 8px 25px rgba(230, 81, 0, 0.15);
+    }
+
+    .selection-btn.selected {
+      background: var(--gradient-1);
+      color: white;
+      border-color: var(--navy-dark);
+      box-shadow: 0 8px 30px rgba(13, 27, 61, 0.25);
+    }
+
+    /* ===== BUTTONS ===== */
+    .button-primary {
+      padding: 16px 36px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 16px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 100%;
+      margin-top: 40px;
+      background: var(--gradient-2);
+      color: white;
+      box-shadow: 0 8px 25px rgba(230, 81, 0, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .button-primary::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .button-primary:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .button-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(230, 81, 0, 0.4);
+    }
+
+    .button-primary:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    /* ===== INFO BOX ===== */
+    .info-box {
+      background: linear-gradient(135deg, rgba(254, 249, 243, 0.8) 0%, rgba(255, 245, 230, 1) 100%);
+      border-left: 5px solid var(--orange-primary);
+      border-radius: 14px;
+      padding: 24px;
+      margin: 24px 0;
+      font-size: 0.95em;
+      line-height: 1.7;
+      backdrop-filter: blur(10px);
+    }
+
+    .info-box.warning {
+      background: linear-gradient(135deg, rgba(255, 243, 224, 0.8), rgba(255, 238, 210, 1));
+      border-left-color: #F59E0B;
+    }
+
+    .info-box h4 {
+      color: var(--navy-dark);
+      margin-bottom: 15px;
+      font-size: 1.1em;
+      font-weight: 700;
+    }
+
+    /* ===== GAP ANALYSIS ===== */
+    .gap-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: center;
+      padding: 18px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 1) 100%);
+      border-radius: 12px;
+      margin-bottom: 14px;
+      border-left: 5px solid var(--warning);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s;
+    }
+
+    .gap-row:hover {
+      transform: translateX(8px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .gap-row.ready {
+      border-left-color: var(--success);
+    }
+
+    .gap-label {
+      font-weight: 700;
+      color: var(--navy-dark);
+      font-size: 0.95em;
+    }
+
+    .gap-scores {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 6px;
+    }
+
+    .gap-bar {
+      height: 8px;
+      background: var(--gray-200);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    .gap-progress {
+      height: 100%;
+      background: linear-gradient(90deg, var(--success) 0%, var(--orange-primary) 100%);
+      border-radius: 4px;
+      transition: width 0.4s ease;
+    }
+
+    .gap-badge {
+      background: var(--warning);
+      color: white;
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      text-align: center;
+      min-width: 80px;
+    }
+
+    .gap-badge.ready {
+      background: var(--success);
+    }
+
+    /* ===== GRADE CARDS ===== */
+    .roadmap {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding: 20px 0;
+      scroll-behavior: smooth;
+      margin-bottom: 30px;
+    }
+
+    .grade-card {
+      flex: 0 0 240px;
+      background: linear-gradient(135deg, #0D1B3D 0%, #1a2f52 100%);
+      color: white;
+      padding: 28px;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(13, 27, 61, 0.25);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s;
+      border: 2px solid rgba(255, 107, 53, 0.3);
+    }
+
+    .grade-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 45px rgba(13, 27, 61, 0.35);
+      border-color: rgba(255, 107, 53, 0.6);
+    }
+
+    .grade-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(255, 107, 53, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .grade-badge {
+      background: linear-gradient(135deg, #FF6B35, #E65100);
+      color: white;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 800;
+      display: inline-block;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .grade-title {
+      font-size: 1.35em;
+      font-weight: 800;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+      color: #FFFFFF;
+      letter-spacing: -0.5px;
+    }
+
+    .grade-subtitle {
+      font-size: 0.95em;
+      opacity: 0.9;
+      margin-bottom: 18px;
+      border-bottom: 2px solid rgba(255, 107, 53, 0.4);
+      padding-bottom: 14px;
+      position: relative;
+      z-index: 1;
+      font-weight: 600;
+      color: #FFD9BF;
+    }
+
+    .grade-details {
+      font-size: 13px;
+      line-height: 1.7;
+      opacity: 0.95;
+      position: relative;
+      z-index: 1;
+      color: #F0F4F8;
+    }
+
+    .grade-details strong {
+      display: block;
+      margin-top: 14px;
+      margin-bottom: 8px;
+      font-weight: 700;
+      color: #FFB380;
+      font-size: 0.95em;
+    }
+
+    /* ===== PROGRESS TRACKER ===== */
+    .progress-tracker {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 20px;
+      background: linear-gradient(135deg, rgba(230, 81, 0, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+      border-radius: 14px;
+      margin: 25px 0;
+      backdrop-filter: blur(10px);
+    }
+
+    .progress-count {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--orange-primary);
+      min-width: 70px;
+      text-align: center;
+    }
+
+    .progress-label {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .progress-bar-container {
+      flex: 1;
+    }
+
+    .progress-bar {
+      height: 10px;
+      background: var(--gray-200);
+      border-radius: 5px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--gradient-2);
+      border-radius: 5px;
+      transition: width 0.4s ease;
+    }
+
+    .progress-percent {
+      font-size: 12px;
+      color: var(--text-secondary);
+      text-align: right;
+      font-weight: 600;
+    }
+
+    /* ===== SELECTION TRACKER ===== */
+    .selection-tracker {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin: 30px 0;
+      padding: 24px;
+      background: linear-gradient(135deg, rgba(248, 250, 252, 0.8), rgba(241, 245, 249, 1));
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+    }
+
+    .tracker-item {
+      text-align: center;
+    }
+
+    .tracker-icon {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .tracker-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--navy-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .tracker-value {
+      font-size: 14px;
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .header h1 { font-size: 2.2em; }
+      .component { padding: 30px 20px; }
+      .nav-tabs { grid-template-columns: 1fr 1fr; }
+      .rating-levels { grid-template-columns: 1fr; }
+      .selection-tracker { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <h1>✨ PGB Career Lattice</h1>
+  <p>Your Path to Professional Excellence</p>
+</div>
+
+<!-- MAIN CONTAINER -->
+<div class="container">
+
+  <!-- NAVIGATION TABS -->
+  <div class="nav-tabs">
+    <div class="nav-tab active" onclick="switchStep(1)">
+      <span class="icon">🎯</span>
+      <div class="step">STEP 1</div>
+      <div class="title">Self-Assessment</div>
+    </div>
+    <div class="nav-tab" onclick="switchStep(2)">
+      <span class="icon">🗺️</span>
+      <div class="step">STEP 2</div>
+      <div class="title">Career Path</div>
+    </div>
+    <div class="nav-tab" onclick="switchStep(3)">
+      <span class="icon">💼</span>
+      <div class="step">STEP 3</div>
+      <div class="title">Job Roles</div>
+    </div>
+    <div class="nav-tab" onclick="switchStep(4)">
+      <span class="icon">📈</span>
+      <div class="step">STEP 4</div>
+      <div class="title">Progression</div>
+    </div>
+    <div class="nav-tab" onclick="switchStep(5)">
+      <span class="icon">🚀</span>
+      <div class="step">STEP 5</div>
+      <div class="title">Development</div>
+    </div>
+  </div>
+
+  <!-- STEP 1: SELF-CHECK -->
+  <div id="step1" class="component active">
+    <h2>🎯 Self-Assessment</h2>
+    <p class="component-subtitle">Rate your proficiency across 10 core competencies</p>
+
+    <div class="rating-guide">
+      <h3>📊 Proficiency Scale</h3>
+      <div class="rating-levels">
+        <div class="rating-level level-1">
+          <div class="rating-number">1</div>
+          <div class="rating-label">Needs Development</div>
+          <div class="rating-desc">Requires support & training</div>
+        </div>
+        <div class="rating-level level-2">
+          <div class="rating-number">2</div>
+          <div class="rating-label">Developing</div>
+          <div class="rating-desc">Basic understanding</div>
+        </div>
+        <div class="rating-level level-3">
+          <div class="rating-number">3</div>
+          <div class="rating-label">Proficient</div>
+          <div class="rating-desc">Meets expectations</div>
+        </div>
+        <div class="rating-level level-4">
+          <div class="rating-number">4</div>
+          <div class="rating-label">Advanced</div>
+          <div class="rating-desc">Exceeds expectations</div>
+        </div>
+        <div class="rating-level level-5">
+          <div class="rating-number">5</div>
+          <div class="rating-label">Expert</div>
+          <div class="rating-desc">Sets standards</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title">Rate Your Competencies</div>
+    <div id="competencies"></div>
+    <button id="step1-next-btn" class="button-primary" onclick="proceedToStep2()" disabled style="opacity: 0.5; cursor: not-allowed;">⏳ Rate all 10 competencies to continue</button>
+  </div>
+
+  <!-- STEP 2: CAREER PATH -->
+  <div id="step2" class="component">
+    <h2>🗺️ Career Path Builder</h2>
+    <p class="component-subtitle">Define your growth trajectory and organizational placement</p>
+
+    <div class="selection-tracker">
+      <div class="tracker-item">
+        <div class="tracker-icon">➀</div>
+        <div class="tracker-label">Path</div>
+        <div class="tracker-value" id="step2-path-selected">Select</div>
+      </div>
+      <div class="tracker-item">
+        <div class="tracker-icon">➁</div>
+        <div class="tracker-label">Affiliate</div>
+        <div class="tracker-value" id="step2-aff-selected">Select</div>
+      </div>
+      <div class="tracker-item">
+        <div class="tracker-icon">➂</div>
+        <div class="tracker-label">Business Unit</div>
+        <div class="tracker-value" id="step2-bu-selected">Select</div>
+      </div>
+      <div class="tracker-item">
+        <div class="tracker-icon">➃</div>
+        <div class="tracker-label">Function</div>
+        <div class="tracker-value" id="step2-fu-selected">Select</div>
+      </div>
+    </div>
+
+    <div style="margin: 50px 0;">
+      <div class="section-title" style="margin: 0 0 25px 0;">① Select Your Growth Path</div>
+      <div class="selection-grid" id="paths"></div>
+    </div>
+
+    <div style="margin: 50px 0;">
+      <div class="section-title" style="margin: 0 0 25px 0;">② Select Business Affiliate</div>
+      <div class="selection-grid" id="affiliates"></div>
+    </div>
+
+    <div style="margin: 50px 0;">
+      <div class="section-title" style="margin: 0 0 25px 0;">③ Select Business Unit</div>
+      <div class="selection-grid" id="businessunits"></div>
+    </div>
+
+    <div style="margin: 50px 0;">
+      <div class="section-title" style="margin: 0 0 25px 0;">④ Select Functional Unit</div>
+      <div class="selection-grid" id="functionalunits"></div>
+    </div>
+
+    <button class="button-primary" id="step2-next-btn" onclick="switchStep(3)" disabled style="opacity: 0.5; cursor: not-allowed;">⏳ Complete all selections</button>
+  </div>
+
+  <!-- STEP 3: JOB TITLES -->
+  <div id="step3" class="component">
+    <h2>💼 Job Roles</h2>
+    <p class="component-subtitle">Select your target role within your functional unit</p>
+    
+    <div class="info-box" id="step3-context" style="display: none;">
+      📍 <strong id="step3-fu"></strong> • <strong id="step3-bu"></strong> • <strong id="step3-aff"></strong>
+    </div>
+
+    <div class="section-title">Available Roles</div>
+    <div class="selection-grid" id="jobtitles"></div>
+
+    <div id="step3-confirmation" class="info-box" style="display: none; background: linear-gradient(135deg, #E8F5E9 0%, #F1F8E9 100%); border-left-color: var(--success);">
+      <strong style="color: var(--success); font-size: 16px;">✅ Role Selected</strong><br>
+      <div id="step3-selected-title" style="font-size: 18px; font-weight: 700; color: var(--navy-dark); margin-top: 12px;"></div>
+    </div>
+
+    <button class="button-primary" id="step3-next-btn" onclick="switchStep(4)" disabled style="opacity: 0.5; cursor: not-allowed;">⏳ Select a role first</button>
+  </div>
+
+  <!-- STEP 4: PROGRESSION -->
+  <div id="step4" class="component">
+    <h2>📈 Career Progression</h2>
+    <p class="component-subtitle">Your complete pathway from entry level to strategic leadership</p>
+    <div id="roadmap-container" class="roadmap"></div>
+    <button class="button-primary" onclick="switchStep(5)">Next: Your Development Plan →</button>
+  </div>
+
+  <!-- STEP 5: DEVELOPMENT PLAN -->
+  <div id="step5" class="component">
+    <h2>🚀 Your Development Plan</h2>
+    <p class="component-subtitle">AI-powered 30-60-90 day roadmap tailored to your goals</p>
+
+    <div class="section-title">Career Profile</div>
+    <div id="profile-summary" style="background: linear-gradient(135deg, var(--gradient-1), rgba(26, 47, 82, 0.8)); color: white; padding: 28px; border-radius: 14px; margin-bottom: 40px; font-size: 1.05em; line-height: 1.8;"></div>
+
+    <div class="section-title">Competency Gaps</div>
+    <div id="gap-analysis"></div>
+
+    <div class="section-title">30-60-90 Day Roadmap</div>
+    <div id="ai-plan"></div>
+
+    <div class="section-title">Action Items</div>
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 24px;">
+      <button class="button-primary" style="background: linear-gradient(135deg, #10B981, #059669); margin: 0;" onclick="saveCareerPlan()">💾 Save Plan</button>
+      <button class="button-primary" style="background: linear-gradient(135deg, #3B82F6, #1D4ED8); margin: 0;" onclick="printCareerPlan()">🖨️ Print</button>
+      <button class="button-primary" style="background: linear-gradient(135deg, #F59E0B, #D97706); margin: 0;" onclick="sendByEmail()">📧 Email</button>
+      <button class="button-primary" style="background: linear-gradient(135deg, #8B5CF6, #6D28D9); margin: 0;" onclick="scheduleReview()">📅 Schedule</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ===== STATE & DATA =====
+const state = {
+  competencies: {},
+  path: null,
+  affiliate: null,
+  businessUnit: null,
+  functionalUnit: null,
+  jobTitle: null
+};
+
+const COMPETENCIES = [
+  { name: 'Job Knowledge & Skills', desc: 'Applies expertise reliably in your role and performs tasks independently with accuracy' },
+  { name: 'Decision Making & Problem Solving', desc: 'Consistently makes sound, timely decisions and resolves issues effectively' },
+  { name: 'Communication', desc: 'Communicates clearly and reliably while adapting style to different audiences' },
+  { name: 'Planning & Organizing', desc: 'Organizes work effectively and manages timelines and resources with discipline' },
+  { name: 'Leadership', desc: 'Leads teams effectively and fosters collaboration and accountability' },
+  { name: 'Customer Focus', desc: 'Delivers quality service reliably and adapts solutions to customer needs' },
+  { name: 'Built on Trust (Pagsalig)', desc: 'Upholds values and ethical standards consistently; honest and transparent' },
+  { name: 'We Keep Going (Pagkugi)', desc: 'Completes tasks diligently and maintains composure and focus under pressure' },
+  { name: 'Get Things Done Together (Hiniusang Pagtutok)', desc: 'Collaborates openly and follows team decisions; meets deadlines consistently' },
+  { name: 'Make Things Better (Pagpalambo)', desc: 'Applies learning to work and continuously seeks ways to improve processes' }
+];
+
+const PATHS = ['Vertical', 'Horizontal', 'Diagonal'];
+const AFFILIATES = { 
+  PSC: 'Primary Structures Corporation',
+  SSG: 'Shared Services Group'
+};
+
+const BUSINESS_UNITS = {
+  PSC: { 
+    'Construction Support': ['Manufacturing', 'Equipments', 'Electro-Mechanical'], 
+    'Engineering': ['Conventional Construction', 'Innovative Construction'],
+    'Architecture': ['Architectural Design', 'Building Planning', 'Design Engineering'],
+    'Systems': ['Systems Integration', 'Technical Systems']
+  },
+  SSG: { 
+    'Human Resources': ['Talent Acquisition', 'Learning & Development', 'Employee Relations', 'Compensation & Benefits'],
+    'Supply Chain': ['Procurement', 'Logistics', 'Inventory Management', 'Vendor Management'],
+    'Information & Technology': ['Systems Administration', 'Infrastructure', 'Application Development', 'IT Support'],
+    'Finance & Accounting': ['Financial Planning', 'Accounts Receivable', 'Accounts Payable', 'Payroll'],
+    'Asset Management': ['Asset Tracking', 'Maintenance Planning', 'Facility Management', 'Equipment Management']
+  }
+};
+
+const JOB_TITLES = {
+  // PSC - Construction Support
+  'Manufacturing': ['Production Supervisor', 'Manufacturing Engineer', 'Quality Inspector', 'Maintenance Technician', 'Process Specialist'],
+  'Equipments': ['Equipment Operator', 'Equipment Specialist', 'Service Engineer', 'Equipment Lead', 'Asset Manager'],
+  'Electro-Mechanical': ['Electrician', 'Mechanical Technician', 'Systems Technician', 'Installation Specialist', 'Field Engineer'],
+  
+  // PSC - Engineering
+  'Conventional Construction': ['Project Engineer', 'Site Manager', 'Construction Supervisor', 'Foreman', 'QA Officer'],
+  'Innovative Construction': ['Innovation Lead', 'Process Engineer', 'Project Coordinator', 'Technical Specialist', 'R&D Technician'],
+  
+  // PSC - Architecture
+  'Architectural Design': ['Architect', 'Design Engineer', 'CAD Specialist', 'Planning Officer', 'Design Lead'],
+  'Building Planning': ['Planning Manager', 'Structural Planner', 'Compliance Officer', 'Project Planner', 'BIM Coordinator'],
+  'Design Engineering': ['Design Engineer', 'Systems Designer', 'Technical Designer', 'CAD Lead', 'Design Specialist'],
+  
+  // PSC - Systems
+  'Systems Integration': ['Systems Engineer', 'Integration Specialist', 'Technical Lead', 'Solution Architect', 'IT Coordinator'],
+  'Technical Systems': ['Systems Administrator', 'Network Engineer', 'Infrastructure Specialist', 'Systems Lead', 'Technical Support Lead'],
+  
+  // SSG - Human Resources
+  'Talent Acquisition': ['Recruiter', 'Talent Acquisition Manager', 'HR Coordinator', 'Employment Specialist', 'Staffing Analyst'],
+  'Learning & Development': ['L&D Manager', 'Training Specialist', 'Instructional Designer', 'Learning Coordinator', 'Development Specialist'],
+  'Employee Relations': ['Employee Relations Manager', 'HR Specialist', 'Relations Coordinator', 'Policy Analyst', 'Engagement Specialist'],
+  'Compensation & Benefits': ['Compensation Manager', 'Benefits Administrator', 'Payroll Specialist', 'Benefits Analyst', 'Compensation Specialist'],
+  
+  // SSG - Supply Chain
+  'Procurement': ['Procurement Manager', 'Buyer', 'Procurement Specialist', 'Sourcing Manager', 'Contract Specialist'],
+  'Logistics': ['Logistics Manager', 'Supply Chain Coordinator', 'Distribution Specialist', 'Warehouse Supervisor', 'Logistics Analyst'],
+  'Inventory Management': ['Inventory Manager', 'Warehouse Manager', 'Inventory Analyst', 'Stock Controller', 'Materials Coordinator'],
+  'Vendor Management': ['Vendor Manager', 'Supplier Relations Manager', 'Vendor Coordinator', 'Account Manager', 'Relationship Specialist'],
+  
+  // SSG - Information & Technology
+  'Systems Administration': ['Systems Administrator', 'Server Administrator', 'Network Administrator', 'Systems Lead', 'IT Manager'],
+  'Infrastructure': ['Infrastructure Manager', 'Infrastructure Engineer', 'Network Engineer', 'Systems Architect', 'Infrastructure Specialist'],
+  'Application Development': ['Application Developer', 'Software Engineer', 'Development Manager', 'Technical Lead', 'Solutions Architect'],
+  'IT Support': ['IT Support Technician', 'Help Desk Specialist', 'Support Manager', 'IT Coordinator', 'Technical Support Lead'],
+  
+  // SSG - Finance & Accounting
+  'Financial Planning': ['Financial Analyst', 'Finance Manager', 'Planning Manager', 'Budget Analyst', 'Financial Planner'],
+  'Accounts Receivable': ['AR Specialist', 'Billing Specialist', 'Accounts Receivable Manager', 'Collections Specialist', 'Credit Analyst'],
+  'Accounts Payable': ['AP Specialist', 'Accounts Payable Manager', 'Payment Processor', 'Invoice Specialist', 'Vendor Coordinator'],
+  'Payroll': ['Payroll Manager', 'Payroll Specialist', 'Payroll Coordinator', 'Compensation Analyst', 'Payroll Administrator'],
+  
+  // SSG - Asset Management
+  'Asset Tracking': ['Asset Manager', 'Inventory Specialist', 'Asset Coordinator', 'Tracking Analyst', 'Asset Administrator'],
+  'Maintenance Planning': ['Maintenance Manager', 'Maintenance Planner', 'Maintenance Supervisor', 'Facility Coordinator', 'Maintenance Specialist'],
+  'Facility Management': ['Facility Manager', 'Facilities Coordinator', 'Building Manager', 'Operations Manager', 'Facility Specialist'],
+  'Equipment Management': ['Equipment Manager', 'Equipment Specialist', 'Maintenance Technician', 'Equipment Coordinator', 'Field Technician']
+};
+
+// ===== CORE FUNCTIONS (All from previous version) =====
+function switchStep(num) {
+  document.querySelectorAll('.component').forEach(c => c.classList.remove('active'));
+  document.getElementById(`step${num}`).classList.add('active');
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.nav-tab')[num - 1].classList.add('active');
+  
+  if (num === 2) {
+    updateStep2UI();
+    if (state.affiliate) showBusinessUnits();
+    if (state.businessUnit) showFunctionalUnits();
+  } else if (num === 3) {
+    if (state.functionalUnit) showJobTitles();
+  } else if (num === 4) {
+    initStep4();
+  } else if (num === 5) {
+    initStep5();
+  }
+  
+  window.scrollTo(0, 0);
+}
+
+function initCompetencies() {
+  const html = COMPETENCIES.map((c, idx) => `
+    <div class="competency-card" data-comp-idx="${idx}">
+      <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
+        <div>
+          <div class="competency-name">${c.name}</div>
+          <div class="competency-desc">${c.desc}</div>
+        </div>
+        <div class="competency-score" style="font-size: 24px; font-weight: 700; color: var(--orange-primary); min-width: 40px; text-align: right;" data-score="0">-</div>
+      </div>
+      <div class="rating-buttons">
+        ${[1,2,3,4,5].map(r => `<button class="rating-btn" onclick="rateCompetency(${idx}, ${r})" data-rating="${r}">${r}</button>`).join('')}
+      </div>
+    </div>
+  `).join('');
+  document.getElementById('competencies').innerHTML = html;
+  updateStep1Progress();
+}
+
+function rateCompetency(idx, score) {
+  const competency = COMPETENCIES[idx];
+  state.competencies[competency.name] = score;
+  
+  const card = document.querySelector(`[data-comp-idx="${idx}"]`);
+  card.querySelector('.competency-score').textContent = score;
+  card.querySelector('.competency-score').style.color = 
+    score === 5 ? '#0D1B3D' : score === 4 ? '#10B981' : score === 3 ? '#F59E0B' : score <= 2 ? '#EF4444' : '#999';
+  
+  card.querySelectorAll('.rating-btn').forEach(btn => {
+    const btnScore = parseInt(btn.dataset.rating);
+    btn.classList.toggle('selected', btnScore === score);
+  });
+  
+  updateStep1Progress();
+}
+
+function updateStep1Progress() {
+  const totalRated = Object.keys(state.competencies).length;
+  const totalCompetencies = COMPETENCIES.length;
+  const percent = Math.round((totalRated / totalCompetencies) * 100);
+  
+  let summaryHTML = `
+    <div class="progress-tracker">
+      <div class="progress-count">${totalRated}/${totalCompetencies}</div>
+      <div>
+        <div class="progress-label">Competencies Rated</div>
+      </div>
+      <div class="progress-bar-container">
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: ${percent}%"></div>
+        </div>
+        <div class="progress-percent">${percent}% Complete</div>
+      </div>
+    </div>
+  `;
+  
+  let existingSummary = document.getElementById('step1-progress');
+  if (!existingSummary) {
+    const progressDiv = document.createElement('div');
+    progressDiv.id = 'step1-progress';
+    const competenciesContainer = document.getElementById('competencies');
+    competenciesContainer.parentElement.insertBefore(progressDiv, competenciesContainer.nextSibling);
+    existingSummary = progressDiv;
+  }
+  
+  existingSummary.innerHTML = summaryHTML;
+  
+  const nextBtn = document.getElementById('step1-next-btn');
+  if (!nextBtn) return;
+  
+  if (totalRated === totalCompetencies) {
+    nextBtn.disabled = false;
+    nextBtn.style.opacity = '1';
+    nextBtn.style.cursor = 'pointer';
+    nextBtn.innerHTML = '✅ All rated! Next: Career Path →';
+  } else {
+    nextBtn.disabled = true;
+    nextBtn.style.opacity = '0.5';
+    nextBtn.style.cursor = 'not-allowed';
+    nextBtn.innerHTML = `⏳ Rate all ${totalCompetencies} competencies (${totalRated}/${totalCompetencies})`;
+  }
+}
+
+function proceedToStep2() {
+  const totalRated = Object.keys(state.competencies).length;
+  const totalCompetencies = COMPETENCIES.length;
+  
+  if (totalRated !== totalCompetencies) {
+    alert(`Please rate all ${totalCompetencies} competencies first!`);
+    return;
+  }
+  
+  switchStep(2);
+}
+
+function initStep2() {
+  const pathsHtml = PATHS.map(p => `
+    <button class="selection-btn" onclick="selectPath('${p}')">
+      ${p === 'Vertical' ? '⬆️ Vertical' : p === 'Horizontal' ? '↔️ Horizontal' : '↗️ Diagonal'}
+    </button>
+  `).join('');
+  document.getElementById('paths').innerHTML = pathsHtml;
+
+  const affiliatesHtml = Object.entries(AFFILIATES).map(([code, name]) => `
+    <button class="selection-btn" onclick="selectAffiliate('${code}')">${code}<br><span style="font-size:11px;">${name}</span></button>
+  `).join('');
+  document.getElementById('affiliates').innerHTML = affiliatesHtml;
+}
+
+function selectPath(path) {
+  state.path = path;
+  state.businessUnit = null;
+  state.functionalUnit = null;
+  updateStep2UI();
+}
+
+function selectAffiliate(affiliate) {
+  state.affiliate = affiliate;
+  state.businessUnit = null;
+  state.functionalUnit = null;
+  updateStep2UI();
+  showBusinessUnits();
+}
+
+function selectBusinessUnit(bu) {
+  state.businessUnit = bu;
+  state.functionalUnit = null;
+  updateStep2UI();
+  showFunctionalUnits();
+}
+
+function selectFunctionalUnit(fu) {
+  state.functionalUnit = fu;
+  updateStep2UI();
+  showJobTitles();
+}
+
+function updateStep2UI() {
+  document.getElementById('step2-path-selected').textContent = state.path || 'Select';
+  document.getElementById('step2-aff-selected').textContent = state.affiliate || 'Select';
+  document.getElementById('step2-bu-selected').textContent = state.businessUnit || 'Select';
+  document.getElementById('step2-fu-selected').textContent = state.functionalUnit || 'Select';
+  
+  document.querySelectorAll('#paths .selection-btn').forEach(btn => {
+    btn.classList.toggle('selected', btn.textContent.includes(state.path));
+  });
+
+  document.querySelectorAll('#affiliates .selection-btn').forEach(btn => {
+    btn.classList.toggle('selected', btn.textContent.includes(state.affiliate));
+  });
+
+  document.querySelectorAll('#businessunits .selection-btn').forEach(btn => {
+    btn.classList.toggle('selected', btn.textContent.includes(state.businessUnit));
+  });
+
+  document.querySelectorAll('#functionalunits .selection-btn').forEach(btn => {
+    btn.classList.toggle('selected', btn.textContent.includes(state.functionalUnit));
+  });
+  
+  const allComplete = state.path && state.affiliate && state.businessUnit && state.functionalUnit;
+  const nextBtn = document.getElementById('step2-next-btn');
+  
+  if (allComplete) {
+    nextBtn.disabled = false;
+    nextBtn.style.opacity = '1';
+    nextBtn.style.cursor = 'pointer';
+    nextBtn.innerHTML = '✅ Complete! Next: Select Role →';
+  } else {
+    nextBtn.disabled = true;
+    nextBtn.style.opacity = '0.5';
+    nextBtn.style.cursor = 'not-allowed';
+    nextBtn.innerHTML = '⏳ Complete all selections';
+  }
+}
+
+function showBusinessUnits() {
+  if (!state.affiliate) return;
+  const units = Object.keys(BUSINESS_UNITS[state.affiliate] || {});
+  const html = units.map(bu => `<button class="selection-btn" onclick="selectBusinessUnit('${bu}')">${bu}</button>`).join('');
+  document.getElementById('businessunits').innerHTML = html;
+}
+
+function showFunctionalUnits() {
+  if (!state.affiliate || !state.businessUnit) return;
+  const units = BUSINESS_UNITS[state.affiliate][state.businessUnit] || [];
+  const html = units.map(fu => `<button class="selection-btn" onclick="selectFunctionalUnit('${fu}')">${fu}</button>`).join('');
+  document.getElementById('functionalunits').innerHTML = html;
+}
+
+function showJobTitles() {
+  if (!state.functionalUnit) {
+    document.getElementById('step3-context').style.display = 'none';
+    document.getElementById('jobtitles').innerHTML = '<div class="info-box warning">⚠️ Please complete Career Path Building first.</div>';
+    return;
+  }
+  
+  document.getElementById('step3-context').style.display = 'block';
+  document.getElementById('step3-fu').innerHTML = state.functionalUnit;
+  document.getElementById('step3-bu').innerHTML = state.businessUnit;
+  document.getElementById('step3-aff').innerHTML = state.affiliate;
+  
+  const titles = JOB_TITLES[state.functionalUnit] || [];
+  
+  if (titles.length === 0) {
+    document.getElementById('jobtitles').innerHTML = '<div class="info-box warning">⚠️ No roles available yet.</div>';
+    return;
+  }
+  
+  const html = titles.map(t => `<button class="selection-btn" onclick="selectJobTitle('${t}')">${t}</button>`).join('');
+  document.getElementById('jobtitles').innerHTML = html;
+  
+  if (state.jobTitle) {
+    document.getElementById('step3-confirmation').style.display = 'block';
+    document.getElementById('step3-selected-title').innerHTML = state.jobTitle;
+    const nextBtn = document.getElementById('step3-next-btn');
+    nextBtn.disabled = false;
+    nextBtn.style.opacity = '1';
+    nextBtn.innerHTML = '✅ Role selected! Next: Progression →';
+  }
+}
+
+function selectJobTitle(title) {
+  state.jobTitle = title;
+  
+  document.querySelectorAll('#jobtitles .selection-btn').forEach(btn => {
+    btn.classList.toggle('selected', btn.textContent.trim() === title);
+  });
+  
+  document.getElementById('step3-confirmation').style.display = 'block';
+  document.getElementById('step3-selected-title').innerHTML = title;
+  
+  const nextBtn = document.getElementById('step3-next-btn');
+  nextBtn.disabled = false;
+  nextBtn.style.opacity = '1';
+  nextBtn.style.cursor = 'pointer';
+  nextBtn.innerHTML = '✅ Next: Progression →';
+}
+
+function initStep4() {
+  if (!state.path) {
+    document.getElementById('roadmap-container').innerHTML = '<div class="info-box warning">⚠️ Complete Career Path first.</div>';
+    return;
+  }
+  
+  const grades = ['JG1-3: Specialist', 'JG4-6: Generalist', 'JG7-9: Lead', 'JG10-12: Partner', 'JG13-15: Strategic'];
+  const subtitles = ['Entry-Level IC', 'Experienced Professional', 'Team Lead', 'Business Partner', 'Strategic Leader'];
+  const programs = ['On-the-GO', 'Functional', 'Leadership', 'Imperatives', 'Executive'];
+  
+  const html = grades.map((g, i) => {
+    const [grade, title] = g.split(': ');
+    return `
+      <div class="grade-card">
+        <div class="grade-badge">${grade}</div>
+        <div class="grade-title">${title}</div>
+        <div class="grade-subtitle">${subtitles[i]}</div>
+        <div class="grade-details">
+          <strong>📚 Program</strong><br>
+          ${programs[i]}<br>
+          <strong>🎯 Focus</strong><br>
+          ${['Core Skills', 'Expertise', 'Leadership', 'Strategy', 'Vision'][i]}
+        </div>
+      </div>
+    `;
+  }).join('');
+  
+  document.getElementById('roadmap-container').innerHTML = html;
+}
+
+function initStep5() {
+  if (!state.path || !state.jobTitle) return;
+  
+  const profile = `
+    <strong>💼 Role:</strong> ${state.jobTitle}<br>
+    <strong>📍 Function:</strong> ${state.functionalUnit}<br>
+    <strong>🏢 Business Unit:</strong> ${state.businessUnit} (${state.affiliate})<br>
+    <strong>🎯 Path:</strong> ${state.path}<br>
+    <strong>⭐ Target:</strong> JG4-6 Generalist
+  `;
+  document.getElementById('profile-summary').innerHTML = profile;
+  
+  const gaps = [];
+  COMPETENCIES.forEach((c, i) => {
+    const current = state.competencies[c.name] || 0;
+    const required = [4, 3, 4, 4, 3, 4, 4, 4, 4, 3][i];
+    const gap = Math.max(0, required - current);
+    
+    if (gap > 0) {
+      gaps.push({
+        name: c.name,
+        current,
+        required,
+        gap,
+        priority: gap === 2 ? 'CRITICAL' : gap === 1 ? 'HIGH' : 'MEDIUM'
+      });
+    }
+  });
+  
+  gaps.sort((a, b) => b.gap - a.gap);
+  
+  const gapHtml = COMPETENCIES.map((c, i) => {
+    const current = state.competencies[c.name] || 0;
+    const required = [4, 3, 4, 4, 3, 4, 4, 4, 4, 3][i];
+    const gap = Math.max(0, required - current);
+    const percent = current > 0 ? (current / required) * 100 : 0;
+    
+    return `
+      <div class="gap-row ${gap === 0 ? 'ready' : ''}">
+        <div>
+          <div class="gap-label">${gap === 0 ? '✅' : '⚠️'} ${c.name}</div>
+          <div class="gap-scores">You: ${current}/5 → Required: ${required}/5</div>
+          <div class="gap-bar">
+            <div class="gap-progress" style="width: ${Math.min(percent, 100)}%"></div>
+          </div>
+        </div>
+        <div class="gap-badge ${gap === 0 ? 'ready' : ''}">${gap === 0 ? 'Ready' : 'Gap: ' + gap}</div>
+      </div>
+    `;
+  }).join('');
+  document.getElementById('gap-analysis').innerHTML = gapHtml;
+  
+  const training = {
+    'Manufacturing': 'Production Excellence', 'Equipments': 'Systems Management', 'Electro-Mechanical': 'Technical Systems',
+    'Conventional': 'Project Excellence', 'Innovative': 'Innovation Strategy', 'Architecture': 'Design Leadership',
+    'Production': 'Operations', 'Repairs': 'Maintenance', 'Quality': 'QA Systems', 'Direct': 'Sales Excellence',
+    'Extraction': 'Safety', 'QA': 'Quality', 'Integration': 'Systems', 'Engineering': 'Engineering',
+    'Operations': 'Operations', 'Support': 'Support'
+  };
+  
+  const trainingName = training[state.functionalUnit] || 'Development';
+  
+  let planHTML = gaps.length > 0 ? `
+    <div class="info-box" style="background: linear-gradient(135deg, #FFF3E0, #FFE8CC); border-left-color: var(--orange-primary);">
+      <strong style="color: var(--orange-primary);">🎯 Focus: Close Critical Gaps</strong><br>
+      <div style="font-size: 0.9em; margin-top: 8px;">Top areas: ${gaps.slice(0, 2).map(g => g.name).join(', ')}</div>
+    </div>
+
+    <div class="info-box">
+      <h4>📅 Days 1-30: Foundation</h4>
+      Focus on: ${gaps[0].name}<br>
+      • Enroll in ${trainingName} program<br>
+      • Meet mentor to plan gaps<br>
+      • Daily practice on priority areas
+    </div>
+
+    <div class="info-box">
+      <h4>📅 Days 31-60: Development</h4>
+      Continue gap closure<br>
+      • Complete training modules<br>
+      • Apply learning in real work<br>
+      • Get feedback from mentor
+    </div>
+
+    <div class="info-box">
+      <h4>📅 Days 61-90: Integration</h4>
+      Demonstrate readiness<br>
+      • Validate gap closure<br>
+      • Lead key projects<br>
+      • Plan advancement
+    </div>
+  ` : `
+    <div class="info-box" style="background: linear-gradient(135deg, #E8F5E9, #F1F8E9); border-left-color: var(--success);">
+      <strong style="color: var(--success);">🎉 Excellent Foundation!</strong><br>
+      <div style="font-size: 0.9em; margin-top: 8px;">Focus on mastery and specialization.</div>
+    </div>
+
+    <div class="info-box">
+      <h4>📅 Days 1-30: Specialization</h4>
+      • Deep dive into role expertise<br>
+      • Identify specialization area<br>
+      • Begin mentoring others
+    </div>
+
+    <div class="info-box">
+      <h4>📅 Days 31-60: Mastery</h4>
+      • Master advanced techniques<br>
+      • Lead cross-functional projects<br>
+      • Share knowledge
+    </div>
+
+    <div class="info-box">
+      <h4>📅 Days 61-90: Leadership Ready</h4>
+      • Demonstrate JG7-9 readiness<br>
+      • Build and mentor teams<br>
+      • Take strategic initiatives
+    </div>
+  `;
+  
+  document.getElementById('ai-plan').innerHTML = planHTML;
+}
+
+function saveCareerPlan() { alert('✅ Plan saved to your library!'); }
+function printCareerPlan() { window.print(); }
+function sendByEmail() { window.location.href = 'mailto:?subject=My%20PGB%20Career%20Plan'; }
+function scheduleReview() { window.open('https://calendar.google.com'); }
+
+// INIT
+document.addEventListener('DOMContentLoaded', function() {
+  initCompetencies();
+  initStep2();
+  initStep4();
+  initStep5();
+});
+</script>
+
+</body>
+</html>
